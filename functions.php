@@ -76,4 +76,73 @@ collect(['setup', 'filters'])
 |
 */
 
+
+/* Custom Post Type Start */
+function create_posttype() {
+register_post_type( 'flats',
+// CPT Options
+array(
+  'labels' => array(
+   'name' => __( 'flats' ),
+   'singular_name' => __( 'Flat' )
+  ),
+  'public' => true,
+  'has_archive' => false,
+  'rewrite' => array('slug' => 'flats'),
+ )
+);
+}
+// Hooking up our function to theme setup
+add_action( 'init', 'create_posttype' );
+/* Custom Post Type End */
+
+
+/*Custom Post type start*/
+function cw_post_type_flats() {
+$supports = array(
+'title', // post title
+'editor', // post content
+'author', // post author
+'thumbnail', // featured images
+'excerpt', // post excerpt
+'custom-fields', // custom fields
+'comments', // post comments
+'revisions', // post revisions
+'post-formats', // post formats
+);
+$labels = array(
+'name' => _x('flats', 'plural'),
+'singular_name' => _x('flat', 'singular'),
+'menu_name' => _x('flats', 'admin menu'),
+'name_admin_bar' => _x('flats', 'admin bar'),
+'add_new' => _x('Add New', 'add new'),
+'add_new_item' => __('Add New flat'),
+'new_item' => __('New flat'),
+'edit_item' => __('Edit flats'),
+'view_item' => __('View flats'),
+'all_items' => __('All flats'),
+'search_items' => __('Search flats'),
+'not_found' => __('No flats found.'),
+);
+$args = array(
+'supports' => $supports,
+'labels' => $labels,
+'public' => true,
+'query_var' => true,
+'rewrite' => array('slug' => 'flats'),
+'has_archive' => true,
+'hierarchical' => false,
+);
+register_post_type('flats', $args);
+}
+add_action('init', 'cw_post_type_flats');
+/*Custom Post type end*/
+
+
+
+
+
+
+
+
 add_theme_support('sage');
