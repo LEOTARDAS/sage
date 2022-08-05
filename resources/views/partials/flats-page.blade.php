@@ -9,4 +9,10 @@ query_posts(array(
 <img class="center"><a href="{!! the_permalink() !!}">
 {!! the_post_thumbnail() !!}
 </a></img>
+<a class="Info">
+{!! the_field('price') . 'Eu' !!}
+</a>
+<a>
+{!! the_field('m2') !!}
+</a>
 @endwhile
